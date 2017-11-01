@@ -4,7 +4,8 @@ const request = require('request');
 const moment = require('moment');
 
 const aws = require('aws-sdk');
-const s3Stream = require('s3-upload-stream')(new aws.S3());
+const s3 = new aws.S3();
+const s3Stream = require('s3-upload-stream')(s3);
 
 const selectors = {
     price: ".costs > dl:nth-child(2) > dd:nth-child(2) > ul > li:nth-child(1) > label",
@@ -57,7 +58,18 @@ exports.handler = (event, context, callback) => {
 
                 console.log(parsed);
 
-                callback(null, 'finished');
+                const toUpload = {
+                    Body: JSON.stringify(parsed),
+                    Bucket: bucket,
+                    Key: "json/" + id + ".json"
+                };
+
+                s3.putObject(toUpload, (err, data) => {
+                    console.log(err);
+                    console.log(data);
+                    callback(null, 'finished');
+                });
+                
             });
 
         });
