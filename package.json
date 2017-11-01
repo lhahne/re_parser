@@ -1,0 +1,24 @@
+{
+  "name": "re_parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhahne/re_parser.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/lhahne/re_parser/issues"
+  },
+  "homepage": "https://github.com/lhahne/re_parser#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "mailparser": "^2.1.0",
+    "request": "^2.83.0"
+  }
+}
