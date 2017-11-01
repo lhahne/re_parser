@@ -48,6 +48,7 @@ exports.handler = (event, context, callback) => {
             request(plainUrl, (error, response, body) => {
                 const pageHtml = cheerio.load(body);
                 const parsed = {
+                    id: id,
                     pdf: details.Location,
                     time: moment().format()
                 };
@@ -56,6 +57,10 @@ exports.handler = (event, context, callback) => {
                     parsed[key] = pageHtml(selectors[key]).text();
                 });
 
+                parsed.price = Number.parseFloat(parsed.price.replace(/€| /g, ''));
+                parsed.vastike = Number.parseFloat(parsed.vastike.split('€')[0].replace(/ /g, '').replace(',', '.'));
+                parsed.area = Number.parseFloat(parsed.area.split(' ')[0].replace(',', '.'));
+
                 console.log(parsed);
 
                 const toUpload = {
@@ -63,6 +68,7 @@ exports.handler = (event, context, callback) => {
                     Bucket: bucket,
                     Key: "json/" + id + ".json"
                 };
+
 
                 s3.putObject(toUpload, (err, data) => {
                     console.log(err);
