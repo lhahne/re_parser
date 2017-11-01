@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/lhahne/re_parser#readme",
   "dependencies": {
+    "aws-sdk": "^2.142.0",
     "cheerio": "^1.0.0-rc.2",
     "mailparser": "^2.1.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "s3-upload-stream": "^1.0.7"
   }
 }
