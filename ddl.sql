@@ -18,6 +18,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS etuovi.etuovi (
   `pdf` string,
   `time` string,
   `price` bigint,
+  `timestamp` timestamp,
   `vastike` double,
   `city` string,
   `slum` string,
