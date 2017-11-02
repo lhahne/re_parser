@@ -50,7 +50,8 @@ exports.handler = (event, context, callback) => {
                 const parsed = {
                     id: id,
                     pdf: details.Location,
-                    time: moment().format()
+                    time: moment().format(),
+                    timestamp: Date.now()
                 };
 
                 Object.keys(selectors).forEach(key => {
